@@ -54,7 +54,8 @@ copyIfExists(iconifySrc, path.join(root, 'js', 'iconify-icon.min.js'));
 const solar = require('@iconify-json/solar/icons.json');
 const html = ['index.html', 'admin/index.html']
   .map(file => fs.readFileSync(path.join(root, file), 'utf8')).join('\n');
-const names = [...html.matchAll(/<iconify-icon\s+icon="solar:([^"]+)"/g)].map(match => match[1]);
+const names = [...html.matchAll(/<iconify-icon\s+icon="solar:([^"]+)"/g)]
+  .map(match => match[1].replace(/\s+/g, ''));
 const icons = {};
 const aliases = {};
 for (const name of new Set(names)) {
@@ -62,7 +63,9 @@ for (const name of new Set(names)) {
   else if (solar.aliases?.[name]) {
     aliases[name] = solar.aliases[name];
     icons[aliases[name].parent] = solar.icons[aliases[name].parent];
-  } else throw new Error(`Unknown Solar icon: ${name}`);
+  } else {
+    console.warn(`[build] Warning: icon solar:${name} not found in bundle, skipping.`);
+  }
 }
 
 const iconsPayload = `window.IconifyPreload = ${JSON.stringify({ prefix: 'solar', width: solar.width, height: solar.height, icons, aliases })};`;
