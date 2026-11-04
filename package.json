@@ -1,0 +1,20 @@
+{
+  "name": "event-frontend-preview",
+  "version": "1.0.0",
+  "description": "Event Registration & Ticketing Website - Frontend Preview",
+  "private": true,
+  "scripts": {
+    "dev": "npm run build && node scripts/dev.js",
+    "build": "node scripts/build.js",
+    "preview": "node scripts/serve.js"
+  },
+  "devDependencies": {
+    "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
+    "@iconify-json/solar": "^1.2.13",
+    "@tailwindcss/cli": "^4.3.4",
+    "tailwindcss": "^4.3.4"
+  },
+  "dependencies": {
+    "iconify-icon": "^3.0.5"
+  }
+}

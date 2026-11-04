@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nusantara Web &amp; Design Summit 2026 - Pendaftaran Acara</title>
+  <meta name="description" content="Konferensi tahunan praktisi rekayasa web, arsitektur frontend, dan perancang antarmuka di Bandung. Informasi jadwal, pembicara, kuota, dan pendaftaran.">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="preload" href="./fonts/plus-jakarta-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./css/style.css" as="style">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body class="antialiased">
+
+  <div class="bg-brand-primary-dark text-white text-center py-2 px-4 text-sm font-medium" role="status">
+    Pengumuman: Registrasi gelombang pertama dibuka untuk 300 peserta tatap muka di Sabuga Bandung.
+  </div>
+
+  <a class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[90] focus:bg-surface focus:p-3" href="#konten">Lewati navigasi</a>
+
+  <!-- Navbar -->
+  <header id="navbar" class="sticky top-0 z-50 bg-canvas/90 backdrop-blur-sm border-b border-transparent transition-all duration-200">
+    <nav class="max-w-6xl mx-auto px-5 md:px-8 flex items-center justify-between h-[72px] md:h-[80px]" aria-label="Navigasi utama">
+      <a href="#" class="flex items-center gap-2 text-ink font-bold text-xl tracking-tight">
+        <iconify-icon icon="solar:ticket-bol  d" width="28" height="28" class="text-brand-primary" aria-hidden="true" style="width:28px;height:28px;"></iconify-icon>
+        <span>NWDS 2026</span>
+      </a>
+
+      <ul class="hidden md:flex items-center gap-8 text-[15px] font-medium text-muted" role="list">
+        <li><a href="#about" class="nav-link hover:text-ink transition-colors duration-150 py-2">Tentang</a></li>
+        <li><a href="#schedule" class="nav-link hover:text-ink transition-colors duration-150 py-2">Jadwal</a></li>
+        <li><a href="#tickets" class="nav-link hover:text-ink transition-colors duration-150 py-2">Tiket</a></li>
+        <li><a href="#faq" class="nav-link hover:text-ink transition-colors duration-150 py-2">FAQ</a></li>
+      </ul>
+
+      <div class="hidden md:flex items-center gap-4">
+        <a href="./admin/" class="text-[14px] font-medium text-muted hover:text-ink transition-colors">Admin</a>
+        <a href="#tickets" class="btn-primary inline-flex items-center gap-2 text-[15px]">
+          Daftar Sekarang
+        </a>
+      </div>
+
+      <button id="mobile-menu-btn" class="md:hidden p-2 -mr-2 text-ink" aria-expanded="false" aria-controls="mobile-menu" aria-label="Buka menu navigasi">
+        <iconify-icon icon="solar:hamburger-menu-linear" width="24" height="24" aria-hidden="true" style="width:24px;height:24px;"></iconify-icon>
+      </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-surface border-t border-line" aria-label="Menu navigasi">
+      <nav aria-label="Navigasi ponsel"><ul class="flex flex-col py-4 px-5" role="list">
+        <li><a href="#about" class="mobile-nav-link block py-3 text-[16px] font-medium text-muted hover:text-ink transition-colors">Tentang</a></li>
+        <li><a href="#schedule" class="mobile-nav-link block py-3 text-[16px] font-medium text-muted hover:text-ink transition-colors">Jadwal</a></li>
+        <li><a href="#tickets" class="mobile-nav-link block py-3 text-[16px] font-medium text-muted hover:text-ink transition-colors">Tiket</a></li>
+        <li><a href="#faq" class="mobile-nav-link block py-3 text-[16px] font-medium text-muted hover:text-ink transition-colors">FAQ</a></li>
+        <li><a href="./admin/" class="mobile-nav-link block py-3 text-[16px] font-medium text-muted hover:text-ink transition-colors">Dashboard Admin</a></li>
+        <li class="pt-3">
+          <a href="#tickets" class="btn-primary block text-center text-[16px]">Daftar Sekarang</a>
+        </li>
+      </ul></nav>
+    </div>
+  </header>
+
+  <main id="konten">
+    <!-- Hero Section -->
+    <section class="section-spacing" aria-labelledby="hero-heading">
+      <div class="max-w-6xl mx-auto px-5 md:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <!-- Hero Copy -->
+          <div class="order-1">
+            <p class="text-brand-primary-dark font-semibold text-sm mb-4 tracking-wide uppercase">Konferensi Web &amp; Desain 2026</p>
+            <h1 id="hero-heading" class="text-[clamp(2.25rem,6vw,4.5rem)] font-extrabold leading-[1.08] tracking-tight text-ink mb-6">
+              Nusantara Web &amp; Design Summit 2026
+            </h1>
+            <p class="text-muted text-lg md:text-xl leading-relaxed mb-8 max-w-lg">
+              Pertemuan tahunan praktisi rekayasa frontend, arsitektur web modern, dan sistem desain di Indonesia. Berbagi pengalaman teknis dan studi kasus produksi secara langsung.
+            </p>
+            <div class="flex items-center gap-3 text-muted text-[15px] mb-8 flex-wrap">
+              <span class="inline-flex items-center gap-1.5">
+                <iconify-icon icon="solar:calendar-linear" width="18" height="18" aria-hidden="true" style="width:18px;height:18px;"></iconify-icon>
+                Sabtu, 24 Oktober 2026
+              </span>
+              <span class="text-line" aria-hidden="true">|</span>
+              <span class="inline-flex items-center gap-1.5">
+                <iconify-icon icon="solar:map-point-linear" width="18" height="18" aria-hidden="true" style="width:18px;height:18px;"></iconify-icon>
+                Sabuga ITB, Bandung
+              </span>
+            </div>
+            <div class="flex flex-wrap gap-4">
+              <a href="#tickets" class="btn-primary inline-flex items-center gap-2 text-base">
+                Daftar Sekarang
+              </a>
+              <a href="#schedule" class="btn-secondary inline-flex items-center gap-2 text-base">
+                Lihat Jadwal
+              </a>
+            </div>
+          </div>
+
+          <!-- Hero Visual: Event Ticket Card -->
+          <div class="order-2 flex justify-center lg:justify-end" aria-hidden="true">
+            <div class="relative w-full max-w-[380px]">
+              <!-- Main Ticket Card -->
+              <div class="clay-card-elevated rounded-[32px] p-8 bg-surface relative overflow-hidden">
+                <!-- Ticket perforation -->
+                <div class="absolute left-0 top-[68%] w-full flex items-center" aria-hidden="true">
+                  <div class="w-5 h-10 bg-canvas rounded-r-full -ml-[1px]"></div>
+                  <div class="flex-1 border-t-2 border-dashed border-line mx-2"></div>
+                  <div class="w-5 h-10 bg-canvas rounded-l-full -mr-[1px]"></div>
+                </div>
+
+                <!-- Ticket Header -->
+                <div class="flex items-start justify-between mb-6">
+                  <div>
+                    <p class="text-xs font-semibold text-brand-primary-dark uppercase tracking-wider mb-1">Tiket Masuk &amp; Workshop</p>
+                    <p class="text-2xl font-bold text-ink tracking-tight">NWDS 2026</p>
+                  </div>
+                  <div class="w-12 h-12 rounded-xl bg-brand-lilac flex items-center justify-center flex-shrink-0">
+                    <iconify-icon icon="solar:ticket-bold" width="24" height="24" class="text-brand-primary-dark" aria-hidden="true" style="width:24px;height:24px;"></iconify-icon>
+                  </div>
+                </div>
+
+                <!-- Ticket Details -->
+                <div class="space-y-3 mb-8">
+                  <div class="flex items-center gap-3 text-sm">
+                    <div class="w-8 h-8 rounded-lg bg-brand-mint/60 flex items-center justify-center flex-shrink-0">
+                      <iconify-icon icon="solar:calendar-linear" width="16" height="16" class="text-success" aria-hidden="true" style="width:16px;height:16px;"></iconify-icon>
+                    </div>
+                    <div>
+                      <p class="text-muted text-xs">Tanggal &amp; Waktu</p>
+                      <p class="text-ink font-medium">24 Okt 2026, 08.30 WIB</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-3 text-sm">
+                    <div class="w-8 h-8 rounded-lg bg-brand-lilac/60 flex items-center justify-center flex-shrink-0">
+                      <iconify-icon icon="solar:map-point-linear" width="16" height="16" class="text-brand-primary-dark" aria-hidden="true" style="width:16px;height:16px;"></iconify-icon>
+                    </div>
+                    <div>
+                      <p class="text-muted text-xs">Lokasi</p>
+                      <p class="text-ink font-medium">Sabuga ITB, Bandung</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pt-10">
+                  <p class="text-sm font-semibold text-ink">All-Access Pass</p>
+                  <p class="text-xs text-muted mt-1">Akses auditorium utama, lab workshop, lunch box, dan e-certificate.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-spacing" aria-labelledby="about-heading" data-reveal>
+      <div class="max-w-6xl mx-auto px-5 md:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">
+          <div class="lg:col-span-2">
+            <p class="text-brand-primary-dark font-semibold text-sm mb-3 tracking-wide uppercase">Tentang Acara</p>
+            <h2 id="about-heading" class="text-3xl md:text-4xl font-bold tracking-tight text-ink leading-tight">
+              Ruang kolaborasi praktisi untuk berbagi standar rekayasa web dan pengalaman nyata
+            </h2>
+          </div>
+          <div class="lg:col-span-3">
+            <p class="text-muted text-lg leading-relaxed mb-8">
+              Diselenggarakan bersama komunitas open source dan pengembang web di Jawa Barat. Fokus utama kegiatan adalah studi kasus arsitektur frontend skala produksi, implementasi design system yang konsisten, dan pengujian performa web secara langsung.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="clay-card p-6 rounded-[20px]">
+                <div class="w-10 h-10 rounded-xl bg-brand-lilac flex items-center justify-center mb-4">
+                  <iconify-icon icon="solar:book-2-linear" width="20" height="20" class="text-brand-primary-dark" aria-hidden="true" style="width:20px;height:20px;"></iconify-icon>
+                </div>
+                <h3 class="text-ink font-semibold text-base mb-2">Studi Kasus Produksi</h3>
+                <p class="text-muted text-[15px] leading-relaxed">Setiap sesi mengupas arsitektur dan pemecahan masalah nyata dari produk digital yang beroperasi aktif.</p>
+              </div>
+              <div class="clay-card p-6 rounded-[20px]">
+                <div class="w-10 h-10 rounded-xl bg-brand-mint flex items-center justify-center mb-4">
+                  <iconify-icon icon="solar:users-group-rounded-linear" width="20" height="20" class="text-success" aria-hidden="true" style="width:20px;height:20px;"></iconify-icon>
+                </div>
+                <h3 class="text-ink font-semibold text-base mb-2">Jejaring Praktisi</h3>
+                <p class="text-muted text-[15px] leading-relaxed">Ruang temu langsung bagi 300 pengembang web, perancang UI/UX, dan engineering lead untuk bertukar wawasan.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section id="schedule" class="section-spacing bg-surface/50" aria-labelledby="schedule-heading" data-reveal>
+      <div class="max-w-6xl mx-auto px-5 md:px-8">
+        <div class="text-center mb-12 md:mb-16 max-w-2xl mx-auto">
+          <p class="text-brand-primary-dark font-semibold text-sm mb-3 tracking-wide uppercase">Jadwal Acara</p>
+          <h2 id="schedule-heading" class="text-3xl md:text-4xl font-bold tracking-tight text-ink leading-tight mb-4">
+            Rangkaian kegiatan dari pagi hingga sore
+          </h2>
+          <p class="text-muted text-base">Agenda seminar dan sesi praktik pada Sabtu, 24 Oktober 2026 di Sabuga ITB.</p>
+        </div>
+
+        <!-- Timeline -->
+        <div class="max-w-3xl mx-auto">
+          <div class="relative">
+            <!-- Timeline line -->
+            <div class="absolute left-6 md:left-8 top-0 bottom-0 w-px bg-line" aria-hidden="true"></div>
+
+            <!-- Timeline items -->
+            <div class="space-y-1" id="schedule-timeline">
+              <!-- Item 1 -->
+              <div class="relative flex gap-5 md:gap-7 pb-8">
+                <div class="flex-shrink-0 w-12 md:w-16 h-12 md:h-16 rounded-2xl bg-brand-lilac flex items-center justify-center z-10 relative">
+                  <span class="text-brand-primary-dark font-bold text-sm md:text-base">08:30</span>
+                </div>
+                <div class="pt-1 md:pt-3 flex-1">
+                  <h3 class="text-ink font-semibold text-base md:text-lg mb-1">Registrasi &amp; Morning Coffee</h3>
+                  <p class="text-muted text-[15px] leading-relaxed">Pengambilan name tag dan welcome kit peserta di lobi utama Sabuga.</p>
+                </div>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="relative flex gap-5 md:gap-7 pb-8">
+                <div class="flex-shrink-0 w-12 md:w-16 h-12 md:h-16 rounded-2xl bg-brand-mint flex items-center justify-center z-10 relative">
+                  <span class="text-success font-bold text-sm md:text-base">09:15</span>
+                </div>
+                <div class="pt-1 md:pt-3 flex-1">
+                  <h3 class="text-ink font-semibold text-base md:text-lg mb-1">Keynote: Arsitektur Frontend &amp; Web Standards 2026</h3>
+                  <p class="text-muted text-[15px] leading-relaxed">Pemaparan strategi optimasi Core Web Vitals, modular bundle, dan rekayasa web skala besar oleh Rian Pratama (Engineering Director).</p>
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="relative flex gap-5 md:gap-7 pb-8">
+                <div class="flex-shrink-0 w-12 md:w-16 h-12 md:h-16 rounded-2xl bg-brand-lilac flex items-center justify-center z-10 relative">
+                  <span class="text-brand-primary-dark font-bold text-sm md:text-base">10:15</span>
+                </div>
+                <div class="pt-1 md:pt-3 flex-1">
+                  <h3 class="text-ink font-semibold text-base md:text-lg mb-1">Diskusi Panel: Mengelola Design System Lintas Tim</h3>
+                  <p class="text-muted text-[15px] leading-relaxed">Kolaborasi praktis antara engineering dan UI/UX perancang produk bersama Maya Lestari dan tim perancang.</p>
+                </div>
+              </div>
+
+              <!-- Item 4 -->
+              <div class="relative flex gap-5 md:gap-7 pb-8">
+                <div class="flex-shrink-0 w-12 md:w-16 h-12 md:h-16 rounded-2xl bg-brand-mint flex items-center justify-center z-10 relative">
+                  <span class="text-success font-bold text-sm md:text-base">11:45</span>
+                </div>
+                <div class="pt-1 md:pt-3 flex-1">
+                  <h3 class="text-ink font-semibold text-base md:text-lg mb-1">Istirahat, Makan Siang &amp; Showcase Komunitas</h3>
+                  <p class="text-muted text-[15px] leading-relaxed">Makan siang prasmanan serta pameran proyek buatan komunitas pengembang digital lokal.</p>
+                </div>
+              </div>
+
+              <!-- Item 5 -->
+              <div class="relative flex gap-5 md:gap-7 pb-8">
+                <div class="flex-shrink-0 w-12 md:w-16 h-12 md:h-16 rounded-2xl bg-brand-lilac flex items-center justify-center z-10 relative">
+                  <span class="text-brand-primary-dark font-bold text-sm md:text-base">13:00</span>
+                </div>
+                <div class="pt-1 md:pt-3 flex-1">
+                  <h3 class="text-ink font-semibold text-base md:text-lg mb-1">Workshop Praktik: Tailwind v4 &amp; Aksesibilitas WCAG</h3>
+                  <p class="text-muted text-[15px] leading-relaxed">Sesi praktik langsung di lab komputer membangun antarmuka web modern yang cepat dan ramah screen reader.</p>
+                </div>
+              </div>
+
+              <!-- Item 6 -->
+              <div class="relative flex gap-5 md:gap-7 pb-8">
+                <div class="flex-shrink-0 w-12 md:w-16 h-12 md:h-16 rounded-2xl bg-brand-mint flex items-center justify-center z-10 relative">
+                  <span class="text-success font-bold text-sm md:text-base">15:15</span>
+                </div>
+                <div class="pt-1 md:pt-3 flex-1">
+                  <h3 class="text-ink font-semibold text-base md:text-lg mb-1">Tanya Jawab Praktisi &amp; Studi Kasus Lapangan</h3>
+                  <p class="text-muted text-[15px] leading-relaxed">Sesi interaktif menjawab kendala teknis nyata dalam pengembangan aplikasi web dan integrasi tim.</p>
+                </div>
+              </div>
+
+              <!-- Item 7 -->
+              <div class="relative flex gap-5 md:gap-7">
+                <div class="flex-shrink-0 w-12 md:w-16 h-12 md:h-16 rounded-2xl bg-brand-lilac flex items-center justify-center z-10 relative">
+                  <span class="text-brand-primary-dark font-bold text-sm md:text-base">16:30</span>
+                </div>
+                <div class="pt-1 md:pt-3 flex-1">
+                  <h3 class="text-ink font-semibold text-base md:text-lg mb-1">Penutupan, Doorprize &amp; Foto Bersama</h3>
+                  <p class="text-muted text-[15px] leading-relaxed">Rangkuman hasil pertemuan, pembagian doorprize dari pendukung acara, dan dokumentasi penutup.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quota & Tickets Section -->
+    <section id="tickets" class="section-spacing" aria-labelledby="tickets-heading" data-reveal>
+      <div class="max-w-6xl mx-auto px-5 md:px-8">
+        <div class="text-center mb-12 md:mb-16 max-w-2xl mx-auto">
+          <p class="text-brand-primary-dark font-semibold text-sm mb-3 tracking-wide uppercase">Kuota &amp; Pendaftaran</p>
+          <h2 id="tickets-heading" class="text-3xl md:text-4xl font-bold tracking-tight text-ink leading-tight">
+            Pilih tiket dan amankan kursi Anda
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
+          <!-- Quota Information (left) -->
+          <div class="lg:col-span-2 order-1">
+            <div class="clay-card p-6 md:p-8 rounded-[24px]">
+              <h3 class="text-ink font-bold text-xl mb-6">Ketersediaan Kursi</h3>
+
+              <div class="mb-6">
+                <div class="flex justify-between text-sm mb-2">
+                  <span class="text-muted">Kuota terisi</span>
+                  <span class="text-ink font-semibold">82%</span>
+                </div>
+                <div class="w-full bg-brand-lilac/50 rounded-full h-3 overflow-hidden" role="progressbar" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100" aria-label="Kuota terisi 82%">
+                  <div class="h-full bg-brand-primary rounded-full transition-all duration-500" style="width: 82%"></div>
+                </div>
+                <p class="text-xs text-muted mt-2">247 dari 300 kursi telah terisi oleh pendaftar terverifikasi.</p>
+              </div>
+
+              <div class="space-y-4 mb-6">
+                <div class="flex items-center justify-between py-3 border-b border-line">
+                  <span class="text-muted text-[15px]">Total kuota</span>
+                  <span class="text-ink font-semibold">300 Kursi</span>
+                </div>
+                <div class="flex items-center justify-between py-3 border-b border-line">
+                  <span class="text-muted text-[15px]">Sisa kuota</span>
+                  <span class="text-ink font-semibold text-brand-primary-dark font-bold">53 Kursi</span>
+                </div>
+                <div class="flex items-center justify-between py-3 border-b border-line">
+                  <span class="text-muted text-[15px]">Jenis tiket</span>
+                  <span class="badge bg-brand-mint text-success">All-Access Pass</span>
+                </div>
+                <div class="flex items-center justify-between py-3">
+                  <span class="text-muted text-[15px]">Biaya pendaftaran</span>
+                  <span class="badge bg-brand-lilac text-brand-primary-dark font-bold">Rp175.000</span>
+                </div>
+              </div>
+
+              <div class="bg-canvas rounded-xl p-4">
+                <h4 class="text-ink font-semibold text-sm mb-2">Ketentuan Pendaftaran</h4>
+                <ul class="text-muted text-[14px] space-y-1.5 leading-relaxed">
+                  <li>Tiket mencakup seminar, workshop, lunch box, dan e-certificate.</li>
+                  <li>Peserta workshop diharapkan membawa laptop pribadi.</li>
+                  <li>Konfirmasi pendaftaran dikirimkan langsung ke nomor WhatsApp dan email aktif.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Registration Form (right) -->
+          <div class="lg:col-span-3 order-2">
+            <div class="clay-card-elevated p-6 md:p-8 rounded-[24px]">
+              <div class="mb-6">
+                <h3 class="text-ink font-bold text-xl mb-2">Formulir Pendaftaran Peserta</h3>
+                <p class="text-muted text-[15px]">
+                  Isi data di bawah ini untuk mengamankan kursi Anda pada sesi konferensi dan workshop.
+                </p>
+              </div>
+
+              <form id="demo-form" novalidate>
+                <div class="space-y-5">
+                  <!-- Nama -->
+                  <div>
+                    <label for="field-nama" class="block text-ink font-medium text-sm mb-1.5">
+                      Nama Lengkap <span class="text-danger" aria-hidden="true">*</span>
+                    </label>
+                    <input type="text" id="field-nama" name="nama" required minlength="3"
+                      class="input-field" placeholder="Masukkan nama lengkap untuk sertifikat"
+                      autocomplete="name" aria-required="true">
+                    <p id="error-nama" class="field-error hidden text-danger text-sm mt-1.5" role="alert"></p>
+                  </div>
+
+                  <!-- Email -->
+                  <div>
+                    <label for="field-email" class="block text-ink font-medium text-sm mb-1.5">
+                      Alamat Email <span class="text-danger" aria-hidden="true">*</span>
+                    </label>
+                    <input type="email" id="field-email" name="email" required
+                      class="input-field" placeholder="nama@domain.com"
+                      autocomplete="email" aria-required="true">
+                    <p id="error-email" class="field-error hidden text-danger text-sm mt-1.5" role="alert"></p>
+                  </div>
+
+                  <!-- WhatsApp -->
+                  <div>
+                    <label for="field-wa" class="block text-ink font-medium text-sm mb-1.5">
+                      Nomor WhatsApp <span class="text-danger" aria-hidden="true">*</span>
+                    </label>
+                    <input type="tel" id="field-wa" name="whatsapp" required
+                      class="input-field" placeholder="08xxxxxxxxxx"
+                      autocomplete="tel" aria-required="true">
+                    <p id="error-whatsapp" class="field-error hidden text-danger text-sm mt-1.5" role="alert"></p>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn-primary w-full mt-8 text-base py-4">
+                  Kirim Pendaftaran
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section-spacing bg-surface/50" aria-labelledby="faq-heading" data-reveal>
+      <div class="max-w-3xl mx-auto px-5 md:px-8">
+        <div class="text-center mb-12 md:mb-16">
+          <p class="text-brand-primary-dark font-semibold text-sm mb-3 tracking-wide uppercase">FAQ</p>
+          <h2 id="faq-heading" class="text-3xl md:text-4xl font-bold tracking-tight text-ink leading-tight">
+            Pertanyaan yang sering diajukan
+          </h2>
+        </div>
+
+        <div class="space-y-3" role="list">
+          <!-- FAQ 1 -->
+          <div class="clay-card rounded-[18px] overflow-hidden" role="listitem">
+            <button data-faq-trigger class="w-full flex items-center justify-between p-5 md:p-6 text-left" aria-expanded="false">
+              <span class="text-ink font-semibold text-[15px] md:text-base pr-4">Siapa saja yang boleh mengikuti acara ini?</span>
+              <iconify-icon icon="solar:alt-arrow-down-linear" width="20" height="20" class="text-muted flex-shrink-0 transition-transform duration-200" aria-hidden="true" style="width:20px;height:20px;"></iconify-icon>
+            </button>
+            <div data-faq-content class="overflow-hidden max-h-0 transition-[max-height] duration-250 ease-out" hidden>
+              <div class="px-5 md:px-6 pb-5 md:pb-6 text-muted text-[15px] leading-relaxed">
+                Acara ini terbuka untuk mahasiswa, software engineer, perancang UI/UX, product manager, dan penggiat industri digital yang tertarik dengan pengembangan teknologi web terkini.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="clay-card rounded-[18px] overflow-hidden" role="listitem">
+            <button data-faq-trigger class="w-full flex items-center justify-between p-5 md:p-6 text-left" aria-expanded="false">
+              <span class="text-ink font-semibold text-[15px] md:text-base pr-4">Di mana acara ini dilaksanakan?</span>
+              <iconify-icon icon="solar:alt-arrow-down-linear" width="20" height="20" class="text-muted flex-shrink-0 transition-transform duration-200" aria-hidden="true" style="width:20px;height:20px;"></iconify-icon>
+            </button>
+            <div data-faq-content class="overflow-hidden max-h-0 transition-[max-height] duration-250 ease-out" hidden>
+              <div class="px-5 md:px-6 pb-5 md:pb-6 text-muted text-[15px] leading-relaxed">
+                Kegiatan tatap muka bertempat di Sasana Budaya Ganesha (Sabuga ITB), Jl. Tamansari No. 73, Kota Bandung. Lokasi mudah dijangkau kendaraan umum dan memiliki area parkir memadai.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="clay-card rounded-[18px] overflow-hidden" role="listitem">
+            <button data-faq-trigger class="w-full flex items-center justify-between p-5 md:p-6 text-left" aria-expanded="false">
+              <span class="text-ink font-semibold text-[15px] md:text-base pr-4">Apakah tiket acara ini berbayar?</span>
+              <iconify-icon icon="solar:alt-arrow-down-linear" width="20" height="20" class="text-muted flex-shrink-0 transition-transform duration-200" aria-hidden="true" style="width:20px;height:20px;"></iconify-icon>
+            </button>
+            <div data-faq-content class="overflow-hidden max-h-0 transition-[max-height] duration-250 ease-out" hidden>
+              <div class="px-5 md:px-6 pb-5 md:pb-6 text-muted text-[15px] leading-relaxed">
+                Biaya tiket All-Access Pass adalah Rp175.000 per peserta. Biaya tersebut mencakup seluruh sesi seminar, akses workshop praktik, lunch box prasmanan, merchandise kit, dan sertifikat resmi.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="clay-card rounded-[18px] overflow-hidden" role="listitem">
+            <button data-faq-trigger class="w-full flex items-center justify-between p-5 md:p-6 text-left" aria-expanded="false">
+              <span class="text-ink font-semibold text-[15px] md:text-base pr-4">Bagaimana cara mendaftar sebagai peserta?</span>
+              <iconify-icon icon="solar:alt-arrow-down-linear" width="20" height="20" class="text-muted flex-shrink-0 transition-transform duration-200" aria-hidden="true" style="width:20px;height:20px;"></iconify-icon>
+            </button>
+            <div data-faq-content class="overflow-hidden max-h-0 transition-[max-height] duration-250 ease-out" hidden>
+              <div class="px-5 md:px-6 pb-5 md:pb-6 text-muted text-[15px] leading-relaxed">
+                Cukup isi formulir pendaftaran di bagian atas dengan nama lengkap, email aktif, dan nomor WhatsApp. Setelah verifikasi berhasil, tiket digital beserta kode QR check-in dikirimkan otomatis.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="clay-card rounded-[18px] overflow-hidden" role="listitem">
+            <button data-faq-trigger class="w-full flex items-center justify-between p-5 md:p-6 text-left" aria-expanded="false">
+              <span class="text-ink font-semibold text-[15px] md:text-base pr-4">Apakah peserta akan menerima konfirmasi pendaftaran?</span>
+              <iconify-icon icon="solar:alt-arrow-down-linear" width="20" height="20" class="text-muted flex-shrink-0 transition-transform duration-200" aria-hidden="true" style="width:20px;height:20px;"></iconify-icon>
+            </button>
+            <div data-faq-content class="overflow-hidden max-h-0 transition-[max-height] duration-250 ease-out" hidden>
+              <div class="px-5 md:px-6 pb-5 md:pb-6 text-muted text-[15px] leading-relaxed">
+                Ya, setiap pendaftar akan memperoleh tanda terima pendaftaran melalui email dan pesan pengingat jadwal melalui WhatsApp resmi penyelenggara.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 6 -->
+          <div class="clay-card rounded-[18px] overflow-hidden" role="listitem">
+            <button data-faq-trigger class="w-full flex items-center justify-between p-5 md:p-6 text-left" aria-expanded="false">
+              <span class="text-ink font-semibold text-[15px] md:text-base pr-4">Apakah kuota peserta terbatas?</span>
+              <iconify-icon icon="solar:alt-arrow-down-linear" width="20" height="20" class="text-muted flex-shrink-0 transition-transform duration-200" aria-hidden="true" style="width:20px;height:20px;"></iconify-icon>
+            </button>
+            <div data-faq-content class="overflow-hidden max-h-0 transition-[max-height] duration-250 ease-out" hidden>
+              <div class="px-5 md:px-6 pb-5 md:pb-6 text-muted text-[15px] leading-relaxed">
+                Demi menjaga interaksi dua arah dan kenyamanan ruang workshop komputer, kuota peserta tatap muka dibatasi tepat 300 orang.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 7 -->
+          <div class="clay-card rounded-[18px] overflow-hidden" role="listitem">
+            <button data-faq-trigger class="w-full flex items-center justify-between p-5 md:p-6 text-left" aria-expanded="false">
+              <span class="text-ink font-semibold text-[15px] md:text-base pr-4">Bagaimana cara menghubungi panitia?</span>
+              <iconify-icon icon="solar:alt-arrow-down-linear" width="20" height="20" class="text-muted flex-shrink-0 transition-transform duration-200" aria-hidden="true" style="width:20px;height:20px;"></iconify-icon>
+            </button>
+            <div data-faq-content class="overflow-hidden max-h-0 transition-[max-height] duration-250 ease-out" hidden>
+              <div class="px-5 md:px-6 pb-5 md:pb-6 text-muted text-[15px] leading-relaxed">
+                Silakan kirimkan pertanyaan melalui email kontak@nusantaraweb.id atau WhatsApp pengurus di nomor +62 812-3456-7890 setiap hari kerja pukul 09.00 sampai 17.00 WIB.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-ink text-white/80 pt-16 pb-8">
+    <div class="max-w-6xl mx-auto px-5 md:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+        <!-- Event Info -->
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <iconify-icon icon="solar:ticket-bold" width="24" height="24" class="text-brand-primary" aria-hidden="true" style="width:24px;height:24px;"></iconify-icon>
+            <span class="text-white font-bold text-lg">NWDS 2026</span>
+          </div>
+          <p class="text-white/60 text-[15px] leading-relaxed">
+            Konferensi tahunan komunitas web dan perancang antarmuka di Indonesia untuk memajukan standar rekayasa frontend dan pengalaman pengguna digital.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h3 class="text-white font-semibold text-base mb-4">Navigasi Halaman</h3>
+          <ul class="space-y-2.5 text-[15px]">
+            <li><a href="#about" class="hover:text-white transition-colors">Tentang Acara</a></li>
+            <li><a href="#schedule" class="hover:text-white transition-colors">Jadwal Sesi</a></li>
+            <li><a href="#tickets" class="hover:text-white transition-colors">Pendaftaran Tiket</a></li>
+            <li><a href="#faq" class="hover:text-white transition-colors">FAQ</a></li>
+            <li><a href="./admin/" class="hover:text-white transition-colors">Dashboard Admin</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h3 class="text-white font-semibold text-base mb-4">Sekretariat Panitia</h3>
+          <ul class="space-y-2.5 text-[15px]">
+            <li class="flex items-center gap-2">
+              <iconify-icon icon="solar:letter-linear" width="16" height="16" aria-hidden="true" style="width:16px;height:16px;"></iconify-icon>
+              kontak@nusantaraweb.id
+            </li>
+            <li class="flex items-center gap-2">
+              <iconify-icon icon="solar:phone-linear" width="16" height="16" aria-hidden="true" style="width:16px;height:16px;"></iconify-icon>
+              +62 812-3456-7890
+            </li>
+            <li class="flex items-center gap-2">
+              <iconify-icon icon="solar:map-point-linear" width="16" height="16" aria-hidden="true" style="width:16px;height:16px;"></iconify-icon>
+              Sabuga ITB, Tamansari, Bandung
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/40">
+        <p>&copy; 2026 Komunitas Web &amp; Desain Nusantara. Hak cipta dilindungi.</p>
+        <p class="text-xs">Situs resmi pendaftaran konferensi.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Demo Modal -->
+  <div id="demo-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="absolute inset-0 bg-ink/40" id="modal-backdrop" aria-hidden="true"></div>
+    <div class="relative clay-card-elevated rounded-[24px] p-6 md:p-8 max-w-md w-full bg-surface text-center">
+      <div class="w-14 h-14 rounded-2xl bg-brand-lilac flex items-center justify-center mx-auto mb-5">
+        <iconify-icon icon="solar:info-circle-linear" width="28" height="28" class="text-brand-primary-dark" aria-hidden="true" style="width:28px;height:28px;"></iconify-icon>
+      </div>
+      <h3 id="modal-title" class="text-ink font-bold text-xl mb-3">Pratinjau Formulir</h3>
+      <p class="text-muted text-[15px] leading-relaxed mb-6">
+        Ini hanya pratinjau formulir. Pendaftaran belum dibuka dan data tidak disimpan.
+      </p>
+      <button id="modal-close" class="btn-primary w-full" type="button">Mengerti</button>
+    </div>
+  </div>
+
+  <script src="./js/icons.js" defer></script>
+  <script src="./js/iconify-icon.min.js" defer></script>
+  <script src="./js/main.js" type="module"></script>
+</body>
+</html>
