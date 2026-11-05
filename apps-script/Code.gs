@@ -52,15 +52,6 @@ function jsonResponse_(body) {
     .setMimeType(ContentService.MimeType.JSON);
 }
 
-function getJsonData_(event) {
-  var envelope = parseEnvelope_(event);
-  return verifyEnvelope_(envelope);
-}
-
-function generateTicketCode_() {
-  throw appError_('INVALID_REQUEST', 400);
-}
-
 function doGet() {
   return jsonResponse_({ ok: true, service: 'Ticketing_Backend', status: 'READY' });
 }
