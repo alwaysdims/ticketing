@@ -1,6 +1,5 @@
-import { randomUUID } from 'node:crypto';
+import { createHmacEnvelope } from './auth.js';
 import { CONFIG } from './config.js';
-import { signBackendPayload } from './auth.js';
 
 /**
  * Call the Google Apps Script Web App with a signed payload.
@@ -11,7 +10,7 @@ export async function callAppsScript(action, data = {}) {
     throw new AppScriptError('APPS_SCRIPT_URL not configured', 503);
   }
 
-  const body = signBackendPayload({ action, requestId: randomUUID(), ...data });
+  const body = createHmacEnvelope(action, data);
 
   let response;
   try {
@@ -19,7 +18,7 @@ export async function callAppsScript(action, data = {}) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
-      // Vercel Functions timeout is 10 s — give Apps Script 8 s max.
+      redirect: 'follow',
       signal: AbortSignal.timeout(8000),
     });
   } catch (err) {
@@ -33,20 +32,29 @@ export async function callAppsScript(action, data = {}) {
     throw new AppScriptError(`Backend returned ${response.status}`, 502);
   }
 
+  const contentLength = Number(response.headers.get('content-length') || 0);
+  if (contentLength > 256 * 1024) throw new AppScriptError('Backend response too large', 502);
+
   let json;
   try {
     json = await response.json();
   } catch {
     throw new AppScriptError('Backend returned non-JSON response', 502);
   }
+  if (!json || json.ok !== true || !json.result || typeof json.result !== 'object') {
+    const code = json?.error?.code || 'INTERNAL_ERROR';
+    const statusMap = { UNAUTHORIZED: 401, EXPIRED_REQUEST: 401, REPLAY_DETECTED: 409, INVALID_REQUEST: 400, ALREADY_REGISTERED: 409, QUOTA_EXCEEDED: 410, ALREADY_USED: 409, INVALID: 404, SERVER_BUSY: 503 };
+    throw new AppScriptError(code, statusMap[code] || 502, code);
+  }
 
-  return json;
+  return json.result;
 }
 
 export class AppScriptError extends Error {
-  constructor(message, httpStatus = 500) {
+  constructor(message, httpStatus = 500, code = 'BACKEND_ERROR') {
     super(message);
     this.name = 'AppScriptError';
+    this.code = code;
     this.httpStatus = httpStatus;
   }
 }

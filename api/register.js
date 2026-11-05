@@ -1,3 +1,4 @@
+import { randomBytes } from 'node:crypto';
 import { validateRegistration } from './_lib/validate.js';
 import { callAppsScript, errorResponse, successResponse, AppScriptError } from './_lib/appsScript.js';
 import { getClientIp, checkRateLimit, checkPayloadSize } from './_lib/middleware.js';
@@ -32,6 +33,7 @@ export default async function handler(req, res) {
   }
 
   const { nama, email, whatsapp, privacyConsent, clientRequestId } = result.sanitized;
+  const ticketCode = createTicketCode_();
 
   try {
     const gasResult = await callAppsScript('register', {
@@ -40,6 +42,7 @@ export default async function handler(req, res) {
       whatsapp,
       privacyConsent,
       clientRequestId,
+      ticketCode,
     });
 
     switch (gasResult.status) {
@@ -76,9 +79,17 @@ export default async function handler(req, res) {
     }
   } catch (err) {
     if (err instanceof AppScriptError) {
-      return errorResponse(res, err.httpStatus, 'BACKEND_ERROR', err.message);
+      return errorResponse(res, err.httpStatus, err.code, err.code === 'BACKEND_ERROR' ? err.message : 'Request backend ditolak.');
     }
     console.error('[register] Unhandled error:', err);
     return errorResponse(res, 500, 'INTERNAL_ERROR', 'Terjadi kesalahan tidak terduga.');
   }
+}
+
+function createTicketCode_() {
+  const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  const bytes = randomBytes(8);
+  let value = '';
+  for (const byte of bytes) value += alphabet[byte % alphabet.length];
+  return `NWDS-${value.slice(0, 4)}-${value.slice(4)}`;
 }

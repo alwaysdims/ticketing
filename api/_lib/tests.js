@@ -7,14 +7,12 @@
 import assert from 'node:assert/strict';
 import { createHmac } from 'node:crypto';
 
-// Set dummy env vars before importing config-dependent modules
-process.env.APPS_SCRIPT_URL = 'https://script.google.com/test';
-process.env.BACKEND_SECRET_KEY = 'test-secret-key-32bytes-padding!!';
-process.env.GOOGLE_CLIENT_ID = 'test-client-id.apps.googleusercontent.com';
-process.env.SESSION_SECRET = 'test-session-secret-32bytes-padd!';
-process.env.ADMIN_ALLOWLIST = 'admin@example.com, panitia@gmail.com';
+const requiredTestEnv = ['APPS_SCRIPT_URL', 'BACKEND_SECRET_KEY', 'GOOGLE_CLIENT_ID', 'SESSION_SECRET', 'ADMIN_ALLOWLIST'];
+for (const key of requiredTestEnv) {
+  if (!process.env[key]) throw new Error(`Missing test environment variable: ${key}`);
+}
 
-const { signBackendPayload, verifyBackendSignature, createSessionToken, verifySessionToken, parseCookies, buildSessionCookie } = await import('./auth.js');
+const { createHmacEnvelope, verifyHmacEnvelope, createSessionToken, verifySessionToken, parseCookies, buildSessionCookie } = await import('./auth.js');
 const { validateRegistration, validateCheckin } = await import('./validate.js');
 
 let passed = 0;
@@ -36,40 +34,50 @@ function test(name, fn) {
 
 console.log('\n[1] HMAC Signing');
 
-test('signBackendPayload adds _timestamp and _signature', () => {
-  const result = signBackendPayload({ action: 'test', foo: 'bar' });
-  assert.ok(result._timestamp, 'missing _timestamp');
-  assert.ok(result._signature, 'missing _signature');
-  assert.equal(result.action, 'test');
+test('createHmacEnvelope creates final four-field envelope', () => {
+  const result = createHmacEnvelope('test', { foo: 'bar' });
+  assert.equal(typeof result.timestamp, 'number');
+  assert.match(result.nonce, /^[0-9a-f-]{36}$/);
+  assert.equal(result.payloadText, JSON.stringify({ action: 'test', data: { foo: 'bar' } }));
+  assert.match(result.signature, /^[0-9a-f]{64}$/);
 });
 
-test('verifyBackendSignature accepts valid payload within tolerance', () => {
-  const signed = signBackendPayload({ action: 'register', email: 'a@b.com' });
-  assert.equal(verifyBackendSignature(signed, 60_000), true);
+test('verifyHmacEnvelope accepts valid payload', () => {
+  assert.equal(verifyHmacEnvelope(createHmacEnvelope('register', { email: 'a@b.com' })), true);
 });
 
-test('verifyBackendSignature rejects tampered payload', () => {
-  const signed = signBackendPayload({ action: 'register', email: 'a@b.com' });
-  signed.email = 'evil@attacker.com';
-  assert.equal(verifyBackendSignature(signed, 60_000), false);
+test('verifyHmacEnvelope rejects payload tampering', () => {
+  const envelope = createHmacEnvelope('register', { email: 'a@b.com' });
+  envelope.payloadText = JSON.stringify({ action: 'register', data: { email: 'evil@attacker.com' } });
+  assert.equal(verifyHmacEnvelope(envelope), false);
 });
 
-test('verifyBackendSignature rejects expired timestamp', () => {
-  const signed = signBackendPayload({ action: 'test' });
-  signed._timestamp = (Date.now() - 120_000).toString(); // 2 min ago
-  assert.equal(verifyBackendSignature(signed, 60_000), false);
+test('verifyHmacEnvelope rejects expired timestamp', () => {
+  const envelope = createHmacEnvelope('test');
+  envelope.timestamp -= 120;
+  assert.equal(verifyHmacEnvelope(envelope, 60), false);
 });
 
-test('verifyBackendSignature rejects future timestamp (replay guard)', () => {
-  const signed = signBackendPayload({ action: 'test' });
-  signed._timestamp = (Date.now() + 10_000).toString(); // 10 s in future
-  assert.equal(verifyBackendSignature(signed, 60_000), false);
+test('verifyHmacEnvelope rejects future timestamp', () => {
+  const envelope = createHmacEnvelope('test');
+  envelope.timestamp += 10;
+  assert.equal(verifyHmacEnvelope(envelope, 60), false);
 });
 
-test('verifyBackendSignature rejects missing signature', () => {
-  const signed = signBackendPayload({ action: 'test' });
-  delete signed._signature;
-  assert.equal(verifyBackendSignature(signed, 60_000), false);
+test('verifyHmacEnvelope rejects invalid signature and nonce replay shape', () => {
+  const envelope = createHmacEnvelope('test');
+  envelope.signature = '0'.repeat(64);
+  assert.equal(verifyHmacEnvelope(envelope), false);
+  envelope.signature = createHmacEnvelope('test').signature;
+  envelope.nonce = 'not-a-uuid';
+  assert.equal(verifyHmacEnvelope(envelope), false);
+});
+
+test('HMAC binds exact whitespace and Unicode payload text', () => {
+  const envelope = createHmacEnvelope('test', { value: ' café  ' });
+  assert.equal(verifyHmacEnvelope(envelope), true);
+  envelope.payloadText = envelope.payloadText.replace('  ', ' ');
+  assert.equal(verifyHmacEnvelope(envelope), false);
 });
 
 // ─── Session JWT ──────────────────────────────────────────────────────────────

@@ -84,7 +84,7 @@ export default async function handler(req, res) {
     }
   } catch (err) {
     if (err instanceof AppScriptError) {
-      return errorResponse(res, err.httpStatus, 'BACKEND_ERROR', err.message);
+      return errorResponse(res, err.httpStatus, err.code, err.code === 'BACKEND_ERROR' ? err.message : 'Request backend ditolak.');
     }
     console.error('[admin/checkin] Unhandled error:', err);
     return errorResponse(res, 500, 'INTERNAL_ERROR', 'Terjadi kesalahan tidak terduga.');

@@ -1,5 +1,5 @@
 import { CONFIG } from '../_lib/config.js';
-import { createSessionToken, buildSessionCookie } from '../_lib/auth.js';
+import { createSessionToken, buildSessionCookie, buildCsrfCookie, randomHex } from '../_lib/auth.js';
 import { errorResponse } from '../_lib/appsScript.js';
 import { getClientIp, checkRateLimit, checkPayloadSize } from '../_lib/middleware.js';
 
@@ -72,7 +72,7 @@ export default async function handler(req, res) {
   const token = createSessionToken(sessionPayload);
   const cookieStr = buildSessionCookie(token);
 
-  res.setHeader('Set-Cookie', cookieStr);
+  res.setHeader('Set-Cookie', [cookieStr, buildCsrfCookie(randomHex(32))]);
   return res.status(200).json({
     success: true,
     admin: { email, name: tokenInfo.name || email },

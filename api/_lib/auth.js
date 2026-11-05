@@ -1,53 +1,45 @@
 import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
 import { CONFIG } from './config.js';
 
-// ─── HMAC Signing ─────────────────────────────────────────────────────────────
-
-/**
- * Build a canonical string from the request body object and sign it with
- * HMAC-SHA256. The signature plus a fresh timestamp are embedded in the
- * body itself because Apps Script doPost() does not expose custom HTTP headers.
- *
- * Canonical format:  timestamp + "." + JSON.stringify(sortedPayload)
- * This binds the signature to the exact payload content and time.
- */
-export function signBackendPayload(payload) {
-  const timestamp = Date.now().toString();
-  // Sort keys so signature is deterministic regardless of insertion order.
-  const canonical = timestamp + '.' + JSON.stringify(sortObjectKeys(payload));
+export function createHmacEnvelope(action, data = {}) {
+  const timestamp = Math.floor(Date.now() / 1000);
+  const nonce = randomUuidV4();
+  const payloadText = JSON.stringify({ action, data });
   const signature = createHmac('sha256', CONFIG.BACKEND_SECRET_KEY)
-    .update(canonical)
+    .update(`${timestamp}.${nonce}.${payloadText}`, 'utf8')
     .digest('hex');
-
-  return { ...payload, _timestamp: timestamp, _signature: signature };
+  return { timestamp, nonce, payloadText, signature };
 }
 
-/**
- * Apps Script calls this logic server-side. Duplicated here for unit tests.
- * Returns true if signature is valid and timestamp is within allowed window.
- */
-export function verifyBackendSignature(body, toleranceMs = 60_000) {
-  const { _timestamp, _signature, ...rest } = body;
-  if (!_timestamp || !_signature) return false;
-
-  const age = Date.now() - parseInt(_timestamp, 10);
-  if (age < 0 || age > toleranceMs) return false; // expired or future-dated
-
-  const canonical = _timestamp + '.' + JSON.stringify(sortObjectKeys(rest));
+export function verifyHmacEnvelope(envelope, toleranceSeconds = 60) {
+  if (!envelope || typeof envelope !== 'object') return false;
+  const { timestamp, nonce, payloadText, signature } = envelope;
+  if (!Number.isInteger(timestamp) || typeof nonce !== 'string' || typeof payloadText !== 'string' || typeof signature !== 'string') return false;
+  if (!isUuidV4(nonce) || !/^[0-9a-f]{64}$/.test(signature)) return false;
+  const age = Math.floor(Date.now() / 1000) - timestamp;
+  if (age < 0 || age > toleranceSeconds) return false;
   const expected = createHmac('sha256', CONFIG.BACKEND_SECRET_KEY)
-    .update(canonical)
+    .update(`${timestamp}.${nonce}.${payloadText}`, 'utf8')
     .digest('hex');
-
-  // Constant-time comparison prevents timing attacks.
-  try {
-    return timingSafeEqual(Buffer.from(_signature, 'hex'), Buffer.from(expected, 'hex'));
-  } catch {
-    return false; // Different lengths → invalid
-  }
+  return safeEqualHex(signature, expected);
 }
 
-function sortObjectKeys(obj) {
-  return Object.keys(obj).sort().reduce((acc, k) => { acc[k] = obj[k]; return acc; }, {});
+function safeEqualHex(left, right) {
+  const a = Buffer.from(left, 'hex');
+  const b = Buffer.from(right, 'hex');
+  return a.length === b.length && timingSafeEqual(a, b);
+}
+
+function randomUuidV4() {
+  const bytes = randomBytes(16);
+  bytes[6] = (bytes[6] & 0x0f) | 0x40;
+  bytes[8] = (bytes[8] & 0x3f) | 0x80;
+  const hex = bytes.toString('hex');
+  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+}
+
+function isUuidV4(value) {
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
 }
 
 // ─── Session JWT (stateless, HMAC-signed) ─────────────────────────────────────
@@ -91,6 +83,10 @@ function b64url(data) {
   return buf.toString('base64url');
 }
 
+function safeEqualBytes(left, right) {
+  return left.length === right.length && timingSafeEqual(left, right);
+}
+
 // ─── Cookie Parsing ───────────────────────────────────────────────────────────
 
 export function parseCookies(cookieHeader) {
@@ -114,8 +110,21 @@ export function buildSessionCookie(token) {
   ].join('; ');
 }
 
+export function buildCsrfCookie(token) {
+  return [
+    `csrf_token=${encodeURIComponent(token)}`,
+    'Secure',
+    'SameSite=Lax',
+    'Path=/',
+    `Max-Age=${CONFIG.SESSION_MAX_AGE}`,
+  ].join('; ');
+}
+
 export function clearSessionCookie() {
-  return 'admin_session=; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=0';
+  return [
+    'admin_session=; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=0',
+    'csrf_token=; Secure; SameSite=Lax; Path=/; Max-Age=0'
+  ];
 }
 
 // ─── CSRF Guard ───────────────────────────────────────────────────────────────
@@ -127,6 +136,13 @@ export function clearSessionCookie() {
  */
 export function assertCsrfHeader(req) {
   return req.headers['x-requested-with'] === 'XMLHttpRequest';
+}
+
+export function assertCsrfToken(req) {
+  const cookies = parseCookies(req.headers.cookie);
+  const cookieToken = cookies.csrf_token;
+  const headerToken = req.headers['x-csrf-token'];
+  return Boolean(cookieToken && headerToken && safeEqualBytes(Buffer.from(cookieToken), Buffer.from(headerToken)));
 }
 
 // ─── Random token for idempotency / honeypot check ────────────────────────────

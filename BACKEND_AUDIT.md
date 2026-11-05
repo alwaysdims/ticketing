@@ -93,7 +93,7 @@ Body internal minimum:
 }
 ```
 
-Nama field signature harus disepakati dan konsisten. Implementasi preparation saat ini memakai `_timestamp` dan `_signature`; Apps Script harus mengikuti kontrak itu atau kontrak harus diubah bersama sebelum integrasi.
+Kontrak final Phase 3 menggantikan catatan lama: gunakan envelope `timestamp`, `nonce`, `payloadText`, dan `signature` dengan Unix seconds. Field `_timestamp` dan `_signature` tidak digunakan.
 
 ## 4. Endpoint preparation
 

@@ -1,4 +1,4 @@
-import { parseCookies, verifySessionToken, assertCsrfHeader } from './auth.js';
+import { parseCookies, verifySessionToken, assertCsrfHeader, assertCsrfToken } from './auth.js';
 import { errorResponse } from './appsScript.js';
 
 /**
@@ -12,6 +12,7 @@ export function requireAdmin(req, res) {
   const cookies = parseCookies(req.headers.cookie);
   const token = cookies['admin_session'];
   const claims = verifySessionToken(token);
+  res.setHeader('Cache-Control', 'no-store');
   if (!claims) {
     errorResponse(res, 401, 'UNAUTHENTICATED', 'Admin session required');
     return null;
@@ -24,8 +25,8 @@ export function requireAdmin(req, res) {
  * Returns true if OK, or sends 403 and returns false.
  */
 export function requireCsrf(req, res) {
-  if (!assertCsrfHeader(req)) {
-    errorResponse(res, 403, 'CSRF_MISSING', 'Missing required request header');
+  if (!assertCsrfHeader(req) || !assertCsrfToken(req)) {
+    errorResponse(res, 403, 'CSRF_INVALID', 'Invalid request protection token');
     return false;
   }
   return true;

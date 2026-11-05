@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     return res.status(200).json({ participants: result.participants || [] });
   } catch (err) {
     if (err instanceof AppScriptError) {
-      return errorResponse(res, err.httpStatus, 'BACKEND_ERROR', err.message);
+      return errorResponse(res, err.httpStatus, err.code, err.code === 'BACKEND_ERROR' ? err.message : 'Request backend ditolak.');
     }
     console.error('[admin/participants] Unhandled error:', err);
     return errorResponse(res, 500, 'INTERNAL_ERROR', 'Gagal mengambil data peserta.');
