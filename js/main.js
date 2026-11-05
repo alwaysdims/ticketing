@@ -204,6 +204,13 @@ function initFormValidation() {
       return;
     }
 
+    // Update name on digital ticket preview
+    const nameInput = form.querySelector('[name="nama"]');
+    const ticketNameEl = document.getElementById('ticket-preview-name');
+    if (nameInput && ticketNameEl) {
+      ticketNameEl.textContent = `${nameInput.value.trim()} (Demo)`;
+    }
+
     // Show preview modal: no data stored
     const modal = document.getElementById('demo-modal');
     if (!modal) return;

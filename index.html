@@ -561,18 +561,87 @@
     </div>
   </footer>
 
-  <!-- Demo Modal -->
+  <!-- Demo Modal / Digital Ticket Preview -->
   <div id="demo-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-    <div class="absolute inset-0 bg-ink/40" id="modal-backdrop" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-ink/40 backdrop-blur-sm" id="modal-backdrop" aria-hidden="true"></div>
     <div class="relative clay-card-elevated rounded-[24px] p-6 md:p-8 max-w-md w-full bg-surface text-center">
-      <div class="w-14 h-14 rounded-2xl bg-brand-lilac flex items-center justify-center mx-auto mb-5">
-        <iconify-icon icon="solar:info-circle-linear" width="28" height="28" class="text-brand-primary-dark" aria-hidden="true" style="width:28px;height:28px;"></iconify-icon>
+      <!-- Demo Badge -->
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-lilac text-brand-primary-dark text-xs font-bold uppercase tracking-wider mb-4">
+        <iconify-icon icon="solar:info-circle-linear" width="14" height="14" aria-hidden="true" style="width:14px;height:14px;"></iconify-icon>
+        Tiket Pratinjau Demo
       </div>
-      <h3 id="modal-title" class="text-ink font-bold text-xl mb-3">Pratinjau Formulir</h3>
-      <p class="text-muted text-[15px] leading-relaxed mb-6">
-        Ini hanya pratinjau formulir. Pendaftaran belum dibuka dan data tidak disimpan.
+
+      <h3 id="modal-title" class="text-ink font-bold text-xl mb-1">Pendaftaran Diterima</h3>
+      <p class="text-muted text-xs leading-relaxed mb-5">
+        Ini adalah simulasi tiket digital. Data tidak disimpan dan pendaftaran belum dibuka.
       </p>
-      <button id="modal-close" class="btn-primary w-full" type="button">Mengerti</button>
+
+      <!-- Digital Ticket Card Spec -->
+      <div class="bg-white border border-line rounded-2xl p-5 text-left mb-6 shadow-sm">
+        <div class="border-b border-dashed border-line pb-3 mb-3">
+          <div class="flex justify-between items-center mb-1">
+            <span class="text-[11px] font-bold tracking-wider uppercase text-brand-primary-dark">NWDS 2026</span>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-warning/15 text-warning">DEMO PASS</span>
+          </div>
+          <p class="font-bold text-ink text-base">Nusantara Web &amp; Design Summit</p>
+          <p class="text-xs text-muted">24 Oktober 2026 &middot; Sabuga ITB Bandung</p>
+        </div>
+
+        <div class="space-y-2 mb-4 text-xs">
+          <div>
+            <span class="text-muted block text-[10px] uppercase">Nama Peserta</span>
+            <span id="ticket-preview-name" class="font-semibold text-ink text-sm">Ahmad Fauzi (Demo)</span>
+          </div>
+          <div>
+            <span class="text-muted block text-[10px] uppercase">Kode Verifikasi</span>
+            <span class="font-mono font-bold text-ink text-sm">NWDS-DEMO-SAMPLE</span>
+          </div>
+        </div>
+
+        <!-- Barcode Quiet Zone & Visual Pattern (Code 128 Mock) -->
+        <div class="bg-white p-3 rounded-lg border border-line flex flex-col items-center justify-center">
+          <!-- Mock Code 128 1D Barcode Pattern -->
+          <div class="flex items-center justify-center gap-0.5 h-12 w-full max-w-[260px] bg-white px-2 py-1" aria-label="Barcode Code 128 contoh">
+            <span class="w-1 h-full bg-black"></span>
+            <span class="w-0.5 h-full bg-transparent"></span>
+            <span class="w-1.5 h-full bg-black"></span>
+            <span class="w-1 h-full bg-transparent"></span>
+            <span class="w-0.5 h-full bg-black"></span>
+            <span class="w-0.5 h-full bg-transparent"></span>
+            <span class="w-2 h-full bg-black"></span>
+            <span class="w-1 h-full bg-transparent"></span>
+            <span class="w-1 h-full bg-black"></span>
+            <span class="w-0.5 h-full bg-transparent"></span>
+            <span class="w-0.5 h-full bg-black"></span>
+            <span class="w-1.5 h-full bg-black"></span>
+            <span class="w-1 h-full bg-transparent"></span>
+            <span class="w-2 h-full bg-black"></span>
+            <span class="w-0.5 h-full bg-transparent"></span>
+            <span class="w-1 h-full bg-black"></span>
+            <span class="w-1 h-full bg-transparent"></span>
+            <span class="w-1.5 h-full bg-black"></span>
+            <span class="w-0.5 h-full bg-transparent"></span>
+            <span class="w-0.5 h-full bg-black"></span>
+            <span class="w-1 h-full bg-transparent"></span>
+            <span class="w-2 h-full bg-black"></span>
+            <span class="w-1 h-full bg-transparent"></span>
+            <span class="w-1 h-full bg-black"></span>
+            <span class="w-0.5 h-full bg-transparent"></span>
+            <span class="w-1.5 h-full bg-black"></span>
+            <span class="w-1 h-full bg-transparent"></span>
+            <span class="w-0.5 h-full bg-black"></span>
+          </div>
+          <span class="font-mono text-[11px] text-black tracking-widest mt-1 font-semibold">NWDS-DEMO-SAMPLE</span>
+        </div>
+
+        <p class="text-[11px] text-muted text-center mt-3 leading-tight">
+          Tunjukkan barcode ini kepada panitia di meja registrasi pada hari acara.
+        </p>
+      </div>
+
+      <button id="modal-close" class="btn-primary w-full justify-center text-sm py-3" type="button">
+        Tutup Pratinjau
+      </button>
     </div>
   </div>
 

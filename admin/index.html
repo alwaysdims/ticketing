@@ -30,7 +30,7 @@
         <ul class="space-y-1" role="list">
           <li>
             <button data-nav="overview" aria-current="page" class="nav-item active w-full flex items-center gap-3 px-4 py-3 rounded-xl text-[15px] font-medium transition-colors text-left">
-              <iconify-icon icon="solar:chart-square-linear" width="20" height="20" aria-hidden="true" style="width:20px;height:20px;"></iconify-icon>
+              <iconify-icon icon="solar:chart-2-linear" width="20" height="20" aria-hidden="true" style="width:20px;height:20px;"></iconify-icon>
               Overview
             </button>
           </li>
@@ -41,21 +41,9 @@
             </button>
           </li>
           <li>
-            <button data-nav="tickets" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-[15px] font-medium transition-colors text-left">
-              <iconify-icon icon="solar:ticket-linear" width="20" height="20" aria-hidden="true" style="width:20px;height:20px;"></iconify-icon>
-              Tiket
-            </button>
-          </li>
-          <li>
             <button data-nav="checkin" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-[15px] font-medium transition-colors text-left">
-              <iconify-icon icon="solar:qr-code-linear" width="20" height="20" aria-hidden="true" style="width:20px;height:20px;"></iconify-icon>
+              <iconify-icon icon="solar:scanner-linear" width="20" height="20" aria-hidden="true" style="width:20px;height:20px;"></iconify-icon>
               Check-in
-            </button>
-          </li>
-          <li>
-            <button data-nav="settings" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-[15px] font-medium transition-colors text-left">
-              <iconify-icon icon="solar:settings-linear" width="20" height="20" aria-hidden="true" style="width:20px;height:20px;"></iconify-icon>
-              Pengaturan
             </button>
           </li>
         </ul>
@@ -92,7 +80,7 @@
 
         <!-- Overview View -->
         <div data-view="overview">
-          <!-- KPI Cards -->
+          <!-- KPI Cards: Total, Sudah Check-in, Belum Check-in, Persentase Kehadiran -->
           <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6 mb-8">
             <div class="clay-card p-5 rounded-[20px]">
               <div class="flex items-center gap-3 mb-3">
@@ -101,76 +89,66 @@
                 </div>
                 <span class="text-muted text-sm font-medium">Total Pendaftar</span>
               </div>
-              <p class="text-3xl font-bold text-ink">247</p>
-              <p class="text-xs text-muted mt-1 italic">Data simulasi</p>
+              <p class="text-3xl font-bold text-ink">182</p>
+              <p class="text-xs text-muted mt-1 italic">Kapasitas target: 200 peserta</p>
             </div>
             <div class="clay-card p-5 rounded-[20px]">
               <div class="flex items-center gap-3 mb-3">
                 <div class="w-10 h-10 rounded-xl bg-brand-mint flex items-center justify-center">
-                  <iconify-icon icon="solar:verified-check-linear" width="20" height="20" class="text-success" aria-hidden="true" style="width:20px;height:20px;"></iconify-icon>
+                  <iconify-icon icon="solar:check-circle-linear" width="20" height="20" class="text-success" aria-hidden="true" style="width:20px;height:20px;"></iconify-icon>
                 </div>
-                <span class="text-muted text-sm font-medium">Terkonfirmasi</span>
+                <span class="text-muted text-sm font-medium">Sudah Check-in</span>
               </div>
-              <p class="text-3xl font-bold text-ink">183</p>
-              <p class="text-xs text-muted mt-1 italic">Data simulasi</p>
+              <p class="text-3xl font-bold text-ink">114</p>
+              <p class="text-xs text-muted mt-1 italic">Tercatat di pintu masuk</p>
             </div>
             <div class="clay-card p-5 rounded-[20px]">
               <div class="flex items-center gap-3 mb-3">
                 <div class="w-10 h-10 rounded-xl bg-warning/10 flex items-center justify-center">
                   <iconify-icon icon="solar:clock-circle-linear" width="20" height="20" class="text-warning" aria-hidden="true" style="width:20px;height:20px;"></iconify-icon>
                 </div>
-                <span class="text-muted text-sm font-medium">Menunggu</span>
+                <span class="text-muted text-sm font-medium">Belum Check-in</span>
               </div>
-              <p class="text-3xl font-bold text-ink">52</p>
-              <p class="text-xs text-muted mt-1 italic">Data simulasi</p>
+              <p class="text-3xl font-bold text-ink">68</p>
+              <p class="text-xs text-muted mt-1 italic">Belum hadir di lokasi</p>
             </div>
             <div class="clay-card p-5 rounded-[20px]">
               <div class="flex items-center gap-3 mb-3">
                 <div class="w-10 h-10 rounded-xl bg-brand-lilac/50 flex items-center justify-center">
-                  <iconify-icon icon="solar:login-3-linear" width="20" height="20" class="text-brand-primary-dark" aria-hidden="true" style="width:20px;height:20px;"></iconify-icon>
+                  <iconify-icon icon="solar:chart-2-linear" width="20" height="20" class="text-brand-primary-dark" aria-hidden="true" style="width:20px;height:20px;"></iconify-icon>
                 </div>
-                <span class="text-muted text-sm font-medium">Sudah Check-in</span>
+                <span class="text-muted text-sm font-medium">Persentase Kehadiran</span>
               </div>
-              <p class="text-3xl font-bold text-ink">12</p>
-              <p class="text-xs text-muted mt-1 italic">Data simulasi</p>
+              <p class="text-3xl font-bold text-ink">62.6%</p>
+              <p class="text-xs text-muted mt-1 italic">Rasio 114 dari 182 pendaftar</p>
             </div>
           </div>
 
-          <!-- Status Distribution -->
+          <!-- Status Distribution & Recent Registrations -->
           <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-8">
             <div class="lg:col-span-2 clay-card p-6 rounded-[20px]">
-              <h2 class="text-ink font-semibold text-base mb-5">Distribusi Status</h2>
-              <!-- CSS-only bar chart -->
+              <h2 class="text-ink font-semibold text-base mb-5">Rasio Kehadiran Peserta</h2>
               <div class="space-y-4">
                 <div>
                   <div class="flex justify-between text-sm mb-1.5">
-                    <span class="text-muted">Terkonfirmasi</span>
-                    <span class="text-ink font-semibold">74%</span>
+                    <span class="text-muted">Sudah Check-in</span>
+                    <span class="text-ink font-semibold">62.6% (114)</span>
                   </div>
                   <div class="w-full bg-brand-mint/30 rounded-full h-2.5">
-                    <div class="h-full bg-success rounded-full" style="width: 74%"></div>
+                    <div class="h-full bg-success rounded-full" style="width: 62.6%"></div>
                   </div>
                 </div>
                 <div>
                   <div class="flex justify-between text-sm mb-1.5">
-                    <span class="text-muted">Menunggu</span>
-                    <span class="text-ink font-semibold">21%</span>
+                    <span class="text-muted">Belum Check-in</span>
+                    <span class="text-ink font-semibold">37.4% (68)</span>
                   </div>
-                  <div class="w-full bg-warning/10 rounded-full h-2.5">
-                    <div class="h-full bg-warning rounded-full" style="width: 21%"></div>
-                  </div>
-                </div>
-                <div>
-                  <div class="flex justify-between text-sm mb-1.5">
-                    <span class="text-muted">Check-in</span>
-                    <span class="text-ink font-semibold">5%</span>
-                  </div>
-                  <div class="w-full bg-brand-lilac/30 rounded-full h-2.5">
-                    <div class="h-full bg-brand-primary rounded-full" style="width: 5%"></div>
+                  <div class="w-full bg-canvas rounded-full h-2.5 border border-line/60">
+                    <div class="h-full bg-muted/40 rounded-full" style="width: 37.4%"></div>
                   </div>
                 </div>
               </div>
-              <p class="text-xs text-muted mt-4 italic">Persentase simulasi</p>
+              <p class="text-xs text-muted mt-4 italic">Kalkulasi real-time kehadiran meja registrasi</p>
             </div>
 
             <!-- Recent Registrations -->
@@ -182,39 +160,39 @@
                     <tr class="border-b border-line">
                       <th class="text-left text-muted font-medium px-6 py-3">Nama</th>
                       <th class="text-left text-muted font-medium px-4 py-3">Kode</th>
-                      <th class="text-left text-muted font-medium px-4 py-3">Status</th>
+                      <th class="text-left text-muted font-medium px-4 py-3">Kehadiran</th>
                       <th class="text-right text-muted font-medium px-6 py-3">Waktu</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr class="border-b border-line/50">
                       <td class="px-6 py-3.5 font-medium text-ink">Ahmad Fauzi</td>
-                      <td class="px-4 py-3.5 text-muted font-mono text-xs">NWDS-0821</td>
-                      <td class="px-4 py-3.5"><span class="badge bg-brand-mint text-success text-xs">Terkonfirmasi</span></td>
+                      <td class="px-4 py-3.5 text-muted font-mono text-xs">NWDS-7K9P-M2X4</td>
+                      <td class="px-4 py-3.5"><span class="badge bg-brand-mint text-success text-xs">Sudah check-in</span></td>
                       <td class="px-6 py-3.5 text-right text-muted text-xs">24 Okt 08:15</td>
                     </tr>
                     <tr class="border-b border-line/50">
                       <td class="px-6 py-3.5 font-medium text-ink">Siti Nurhaliza</td>
-                      <td class="px-4 py-3.5 text-muted font-mono text-xs">NWDS-0822</td>
-                      <td class="px-4 py-3.5"><span class="badge bg-warning/10 text-warning text-xs">Menunggu</span></td>
+                      <td class="px-4 py-3.5 text-muted font-mono text-xs">NWDS-3F8Q-L9W2</td>
+                      <td class="px-4 py-3.5"><span class="badge bg-canvas text-muted text-xs">Belum check-in</span></td>
                       <td class="px-6 py-3.5 text-right text-muted text-xs">24 Okt 08:22</td>
                     </tr>
                     <tr class="border-b border-line/50">
                       <td class="px-6 py-3.5 font-medium text-ink">Budi Santoso</td>
-                      <td class="px-4 py-3.5 text-muted font-mono text-xs">NWDS-0823</td>
-                      <td class="px-4 py-3.5"><span class="badge bg-brand-mint text-success text-xs">Terkonfirmasi</span></td>
+                      <td class="px-4 py-3.5 text-muted font-mono text-xs">NWDS-9X4M-P7K1</td>
+                      <td class="px-4 py-3.5"><span class="badge bg-brand-mint text-success text-xs">Sudah check-in</span></td>
                       <td class="px-6 py-3.5 text-right text-muted text-xs">24 Okt 08:35</td>
                     </tr>
                     <tr>
                       <td class="px-6 py-3.5 font-medium text-ink">Dimas Prasetyo</td>
-                      <td class="px-4 py-3.5 text-muted font-mono text-xs">NWDS-0825</td>
-                      <td class="px-4 py-3.5"><span class="badge bg-brand-lilac text-brand-primary-dark text-xs">Sudah check-in</span></td>
+                      <td class="px-4 py-3.5 text-muted font-mono text-xs">NWDS-5R2T-K8Y6</td>
+                      <td class="px-4 py-3.5"><span class="badge bg-brand-mint text-success text-xs">Sudah check-in</span></td>
                       <td class="px-6 py-3.5 text-right text-muted text-xs">24 Okt 08:50</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <p class="text-xs text-muted mt-4 italic px-6">Data peserta terbaru yang masuk ke sistem pendaftaran</p>
+              <p class="text-xs text-muted mt-4 italic px-6">Data peserta terbaru yang masuk ke antrean check-in</p>
             </div>
           </div>
         </div>
@@ -226,15 +204,14 @@
             <div class="relative flex-1">
               <iconify-icon icon="solar:magnifer-linear" width="18" height="18" class="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted" aria-hidden="true" style="width:18px;height:18px;"></iconify-icon>
               <label for="search-input" class="sr-only">Cari peserta</label>
-              <input type="search" id="search-input" class="input-field pl-10" placeholder="Cari nama, email, atau kode...">
+              <input type="search" id="search-input" class="input-field pl-10" placeholder="Cari nama, email, WhatsApp, atau kode tiket...">
             </div>
             <div class="flex gap-3">
               <label for="status-filter" class="sr-only">Filter status</label>
-              <select id="status-filter" class="input-field w-auto min-w-[140px]">
-                <option value="">Semua Status</option>
-                <option value="confirmed">Terkonfirmasi</option>
-                <option value="pending">Menunggu</option>
-                <option value="checked-in">Sudah check-in</option>
+              <select id="status-filter" class="input-field w-auto min-w-[160px]">
+                <option value="">Semua Kehadiran</option>
+                <option value="checked-in">Sudah Check-in</option>
+                <option value="not-checked-in">Belum Check-in</option>
               </select>
             </div>
           </div>
@@ -242,71 +219,80 @@
           <!-- Table -->
           <div class="clay-card rounded-[20px] overflow-hidden">
             <div class="overflow-x-auto">
-              <table class="w-full text-sm min-w-[640px]" id="participants-table">
+              <table class="w-full text-sm min-w-[760px]" id="participants-table">
                 <thead>
                   <tr class="bg-canvas/50">
-                    <th class="text-left text-muted font-medium px-6 py-4">Nama</th>
+                    <th class="text-left text-muted font-medium px-6 py-4">Nama Peserta</th>
                     <th class="text-left text-muted font-medium px-4 py-4">Email</th>
-                    <th class="text-left text-muted font-medium px-4 py-4">Kode</th>
-                    <th class="text-left text-muted font-medium px-4 py-4">Status</th>
-                    <th class="text-right text-muted font-medium px-6 py-4">Waktu</th>
+                    <th class="text-left text-muted font-medium px-4 py-4">WhatsApp</th>
+                    <th class="text-left text-muted font-medium px-4 py-4">Kode Tiket</th>
+                    <th class="text-left text-muted font-medium px-4 py-4">Status Check-in</th>
+                    <th class="text-right text-muted font-medium px-6 py-4">Waktu Check-in</th>
                   </tr>
                 </thead>
                 <tbody id="participants-tbody">
                   <tr class="border-t border-line/50">
                     <td class="px-6 py-4 font-medium text-ink">Ahmad Fauzi</td>
                     <td class="px-4 py-4 text-muted">ahmad.fauzi@mail.com</td>
-                    <td class="px-4 py-4 text-muted font-mono text-xs">NWDS-0821</td>
-                    <td class="px-4 py-4"><span class="badge bg-brand-mint text-success text-xs">Terkonfirmasi</span></td>
+                    <td class="px-4 py-4 text-muted font-mono text-xs">081234567801</td>
+                    <td class="px-4 py-4 text-muted font-mono text-xs font-semibold">NWDS-7K9P-M2X4</td>
+                    <td class="px-4 py-4"><span class="badge bg-brand-mint text-success text-xs">Sudah check-in</span></td>
                     <td class="px-6 py-4 text-right text-muted text-xs">24 Okt 08:15</td>
                   </tr>
                   <tr class="border-t border-line/50">
                     <td class="px-6 py-4 font-medium text-ink">Siti Nurhaliza</td>
                     <td class="px-4 py-4 text-muted">siti.n@techcorp.id</td>
-                    <td class="px-4 py-4 text-muted font-mono text-xs">NWDS-0822</td>
-                    <td class="px-4 py-4"><span class="badge bg-warning/10 text-warning text-xs">Menunggu</span></td>
-                    <td class="px-6 py-4 text-right text-muted text-xs">24 Okt 08:22</td>
+                    <td class="px-4 py-4 text-muted font-mono text-xs">081234567802</td>
+                    <td class="px-4 py-4 text-muted font-mono text-xs font-semibold">NWDS-3F8Q-L9W2</td>
+                    <td class="px-4 py-4"><span class="badge bg-canvas text-muted text-xs">Belum check-in</span></td>
+                    <td class="px-6 py-4 text-right text-muted text-xs italic">Belum hadir</td>
                   </tr>
                   <tr class="border-t border-line/50">
                     <td class="px-6 py-4 font-medium text-ink">Budi Santoso</td>
                     <td class="px-4 py-4 text-muted">budi.santoso@startup.co.id</td>
-                    <td class="px-4 py-4 text-muted font-mono text-xs">NWDS-0823</td>
-                    <td class="px-4 py-4"><span class="badge bg-brand-mint text-success text-xs">Terkonfirmasi</span></td>
+                    <td class="px-4 py-4 text-muted font-mono text-xs">081234567803</td>
+                    <td class="px-4 py-4 text-muted font-mono text-xs font-semibold">NWDS-9X4M-P7K1</td>
+                    <td class="px-4 py-4"><span class="badge bg-brand-mint text-success text-xs">Sudah check-in</span></td>
                     <td class="px-6 py-4 text-right text-muted text-xs">24 Okt 08:35</td>
                   </tr>
                   <tr class="border-t border-line/50">
                     <td class="px-6 py-4 font-medium text-ink">Rina Wulandari</td>
                     <td class="px-4 py-4 text-muted">rina.w@designlab.id</td>
-                    <td class="px-4 py-4 text-muted font-mono text-xs">NWDS-0824</td>
-                    <td class="px-4 py-4"><span class="badge bg-brand-mint text-success text-xs">Terkonfirmasi</span></td>
-                    <td class="px-6 py-4 text-right text-muted text-xs">24 Okt 08:42</td>
+                    <td class="px-4 py-4 text-muted font-mono text-xs">081234567804</td>
+                    <td class="px-4 py-4 text-muted font-mono text-xs font-semibold">NWDS-2C7V-H4N8</td>
+                    <td class="px-4 py-4"><span class="badge bg-canvas text-muted text-xs">Belum check-in</span></td>
+                    <td class="px-6 py-4 text-right text-muted text-xs italic">Belum hadir</td>
                   </tr>
                   <tr class="border-t border-line/50">
                     <td class="px-6 py-4 font-medium text-ink">Dimas Prasetyo</td>
                     <td class="px-4 py-4 text-muted">dimas.p@digital.io</td>
-                    <td class="px-4 py-4 text-muted font-mono text-xs">NWDS-0825</td>
-                    <td class="px-4 py-4"><span class="badge bg-brand-lilac text-brand-primary-dark text-xs">Sudah check-in</span></td>
+                    <td class="px-4 py-4 text-muted font-mono text-xs">081234567805</td>
+                    <td class="px-4 py-4 text-muted font-mono text-xs font-semibold">NWDS-5R2T-K8Y6</td>
+                    <td class="px-4 py-4"><span class="badge bg-brand-mint text-success text-xs">Sudah check-in</span></td>
                     <td class="px-6 py-4 text-right text-muted text-xs">24 Okt 08:50</td>
                   </tr>
                   <tr class="border-t border-line/50">
                     <td class="px-6 py-4 font-medium text-ink">Dewi Anggraini</td>
                     <td class="px-4 py-4 text-muted">dewi.ang@agency.net</td>
-                    <td class="px-4 py-4 text-muted font-mono text-xs">NWDS-0826</td>
-                    <td class="px-4 py-4"><span class="badge bg-warning/10 text-warning text-xs">Menunggu</span></td>
-                    <td class="px-6 py-4 text-right text-muted text-xs">24 Okt 09:05</td>
+                    <td class="px-4 py-4 text-muted font-mono text-xs">081234567806</td>
+                    <td class="px-4 py-4 text-muted font-mono text-xs font-semibold">NWDS-8M6L-B3Q5</td>
+                    <td class="px-4 py-4"><span class="badge bg-canvas text-muted text-xs">Belum check-in</span></td>
+                    <td class="px-6 py-4 text-right text-muted text-xs italic">Belum hadir</td>
                   </tr>
                   <tr class="border-t border-line/50">
                     <td class="px-6 py-4 font-medium text-ink">Fajar Nugraha</td>
                     <td class="px-4 py-4 text-muted">fajar.nugraha@dev.id</td>
-                    <td class="px-4 py-4 text-muted font-mono text-xs">NWDS-0827</td>
-                    <td class="px-4 py-4"><span class="badge bg-brand-mint text-success text-xs">Terkonfirmasi</span></td>
+                    <td class="px-4 py-4 text-muted font-mono text-xs">081234567807</td>
+                    <td class="px-4 py-4 text-muted font-mono text-xs font-semibold">NWDS-4W9X-D1Z7</td>
+                    <td class="px-4 py-4"><span class="badge bg-brand-mint text-success text-xs">Sudah check-in</span></td>
                     <td class="px-6 py-4 text-right text-muted text-xs">24 Okt 09:12</td>
                   </tr>
                   <tr class="border-t border-line/50">
                     <td class="px-6 py-4 font-medium text-ink">Anisa Rahmawati</td>
                     <td class="px-4 py-4 text-muted">anisa.r@creative.org</td>
-                    <td class="px-4 py-4 text-muted font-mono text-xs">NWDS-0828</td>
-                    <td class="px-4 py-4"><span class="badge bg-brand-lilac text-brand-primary-dark text-xs">Sudah check-in</span></td>
+                    <td class="px-4 py-4 text-muted font-mono text-xs">081234567808</td>
+                    <td class="px-4 py-4 text-muted font-mono text-xs font-semibold">NWDS-6H3K-T9P4</td>
+                    <td class="px-4 py-4"><span class="badge bg-brand-mint text-success text-xs">Sudah check-in</span></td>
                     <td class="px-6 py-4 text-right text-muted text-xs">24 Okt 09:18</td>
                   </tr>
                 </tbody>
@@ -324,161 +310,133 @@
           </div>
         </div>
 
-        <!-- Tickets View -->
-        <div data-view="tickets" class="hidden">
-          <div class="mb-6">
-            <span class="badge bg-warning/10 text-warning text-sm font-semibold">Preview</span>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div class="clay-card p-6 rounded-[20px]">
-              <h2 class="text-ink font-semibold text-base mb-4">Ringkasan Tiket</h2>
-              <div class="space-y-3">
-                <div class="flex justify-between items-center py-2 border-b border-line">
-                  <span class="text-muted text-sm">Total peserta terdaftar</span>
-                  <span class="text-ink font-semibold">247 Kursi</span>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-line">
-                  <span class="text-muted text-sm">Status terkonfirmasi</span>
-                  <span class="text-ink font-semibold">183 Kursi</span>
-                </div>
-                <div class="flex justify-between items-center py-2">
-                  <span class="text-muted text-sm">Jenis tiket aktif</span>
-                  <span class="badge bg-brand-mint text-success text-xs">All-Access Pass</span>
-                </div>
-              </div>
-            </div>
-            <div class="clay-card p-6 rounded-[20px]">
-              <h2 class="text-ink font-semibold text-base mb-4">Kategori Tiket Acara</h2>
-              <div class="space-y-3">
-                <div class="p-3 bg-canvas rounded-xl flex items-center justify-between">
-                  <div>
-                    <p class="text-ink font-medium text-sm">All-Access Pass (Reguler)</p>
-                    <p class="text-muted text-xs">Seminar, workshop, lunch &amp; e-certificate</p>
-                  </div>
-                  <span class="text-brand-primary-dark font-bold text-sm">Rp175.000</span>
-                </div>
-                <div class="p-3 bg-canvas rounded-xl flex items-center justify-between">
-                  <div>
-                    <p class="text-ink font-medium text-sm">Community Live Stream</p>
-                    <p class="text-muted text-xs">Akses siaran langsung sesi utama</p>
-                  </div>
-                  <span class="text-success font-bold text-sm">Gratis</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Sample ticket list -->
-          <div class="clay-card rounded-[20px] overflow-hidden">
-            <div class="px-6 py-4 border-b border-line">
-              <h2 class="text-ink font-semibold text-base">Daftar Tiket Terbit</h2>
-            </div>
-            <div class="overflow-x-auto">
-              <table class="w-full text-sm min-w-[480px]">
-                <thead>
-                  <tr class="bg-canvas/50">
-                    <th class="text-left text-muted font-medium px-6 py-3">Kode Tiket</th>
-                    <th class="text-left text-muted font-medium px-4 py-3">Pemilik</th>
-                    <th class="text-left text-muted font-medium px-4 py-3">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="border-t border-line/50">
-                    <td class="px-6 py-3.5 font-mono text-xs text-ink">NWDS-0821</td>
-                    <td class="px-4 py-3.5 text-muted">Ahmad Fauzi</td>
-                    <td class="px-4 py-3.5"><span class="badge bg-brand-mint text-success text-xs">Terkonfirmasi</span></td>
-                  </tr>
-                  <tr class="border-t border-line/50">
-                    <td class="px-6 py-3.5 font-mono text-xs text-ink">NWDS-0822</td>
-                    <td class="px-4 py-3.5 text-muted">Siti Nurhaliza</td>
-                    <td class="px-4 py-3.5"><span class="badge bg-warning/10 text-warning text-xs">Menunggu</span></td>
-                  </tr>
-                  <tr class="border-t border-line/50">
-                    <td class="px-6 py-3.5 font-mono text-xs text-ink">NWDS-0823</td>
-                    <td class="px-4 py-3.5 text-muted">Budi Santoso</td>
-                    <td class="px-4 py-3.5"><span class="badge bg-brand-mint text-success text-xs">Terkonfirmasi</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="px-6 py-4 border-t border-line/50 text-xs text-muted italic">
-              Data tiket tersinkronisasi otomatis dengan basis data registrasi.
-            </div>
-          </div>
-        </div>
-
         <!-- Check-in View -->
         <div data-view="checkin" class="hidden">
-          <div class="max-w-2xl">
-            <div class="clay-card p-6 md:p-8 rounded-[20px] mb-6">
-              <h2 class="text-ink font-semibold text-xl mb-4">Check-in Peserta</h2>
-              <p class="text-muted text-[15px] leading-relaxed mb-6">
-                Pindai QR code tiket peserta di meja registrasi untuk mencatat kehadiran dan menyerahkan starter kit.
+          <div class="max-w-3xl space-y-6">
+            <!-- Header Card -->
+            <div class="clay-card p-6 rounded-[20px]">
+              <div class="flex items-center justify-between mb-2">
+                <h2 class="text-ink font-bold text-xl">Pemindaian Tiket Peserta</h2>
+                <span class="badge bg-brand-lilac text-brand-primary-dark text-xs font-semibold">Mock Scanner</span>
+              </div>
+              <p class="text-muted text-sm leading-relaxed">
+                Pilih metode check-in menggunakan kamera pemindai barcode Code 128 atau masukkan kode tiket secara manual.
               </p>
-
-              <!-- Scan placeholder -->
-              <div class="bg-canvas rounded-2xl p-8 md:p-12 text-center border-2 border-dashed border-line mb-6">
-                <iconify-icon icon="solar:qr-code-linear" width="48" height="48" class="text-brand-primary-dark/40 mb-4" aria-hidden="true" style="width:48px;height:48px;"></iconify-icon>
-                <p class="text-ink font-semibold mb-2">Area Pemindaian QR Scanner</p>
-                <p class="text-muted text-sm">Kamera pemindai aktif secara otomatis saat scanner perangkat terhubung di meja resepsionis.</p>
-              </div>
-
-              <h3 class="text-ink font-semibold text-base mb-3">Petunjuk Operasional Panitia</h3>
-              <ol class="text-muted text-sm space-y-2 list-decimal list-inside leading-relaxed">
-                <li>Buka modul check-in pada tablet atau pemindai barcode meja registrasi.</li>
-                <li>Arahkan kamera atau pemindai ke kode QR tiket yang ditunjukkan peserta.</li>
-                <li>Sistem memverifikasi status pembayaran dan menandai identitas kehadiran.</li>
-                <li>Status peserta diperbarui menjadi "Sudah check-in" secara instan.</li>
-              </ol>
             </div>
 
-            <!-- Sample status -->
+            <!-- Scanner & Manual Input Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- Method 1: Barcode Camera Mock -->
+              <div class="clay-card p-6 rounded-[20px] flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center gap-2 mb-4">
+                    <iconify-icon icon="solar:scanner-linear" width="20" height="20" class="text-brand-primary-dark" aria-hidden="true" style="width:20px;height:20px;"></iconify-icon>
+                    <h3 class="text-ink font-semibold text-base">Pemindai Barcode (Kamera)</h3>
+                  </div>
+                  
+                  <!-- Viewport Box Mock -->
+                  <div class="relative bg-ink rounded-2xl aspect-[4/3] flex flex-col items-center justify-center text-white/70 p-4 border border-line/40 overflow-hidden mb-4">
+                    <!-- Scanner Guide Overlay -->
+                    <div class="w-48 h-28 border-2 border-dashed border-brand-primary rounded-xl flex items-center justify-center relative">
+                      <div class="absolute inset-x-2 top-1/2 h-0.5 bg-brand-primary/80"></div>
+                      <iconify-icon icon="solar:scanner-linear" width="36" height="36" class="text-white/40" aria-hidden="true" style="width:36px;height:36px;"></iconify-icon>
+                    </div>
+                    <p class="text-xs text-white/60 mt-3 text-center">Arahkan barcode 1D Code 128 ke dalam area bidik</p>
+                  </div>
+                </div>
+
+                <div class="space-y-2">
+                  <div class="flex items-center gap-2 text-xs text-muted">
+                    <iconify-icon icon="solar:info-circle-linear" width="16" height="16" aria-hidden="true" style="width:16px;height:16px;"></iconify-icon>
+                    <span>Kamera simulasi siap di meja registrasi</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Method 2: Manual Code Input -->
+              <div class="clay-card p-6 rounded-[20px] flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center gap-2 mb-4">
+                    <iconify-icon icon="solar:keyboard-linear" width="20" height="20" class="text-brand-primary-dark" aria-hidden="true" style="width:20px;height:20px;"></iconify-icon>
+                    <h3 class="text-ink font-semibold text-base">Input Kode Manual</h3>
+                  </div>
+
+                  <p class="text-muted text-xs leading-relaxed mb-4">
+                    Gunakan input ini jika barcode tiket pada layar ponsel peserta redup atau sulit dipindai.
+                  </p>
+
+                  <form id="mock-checkin-form" onsubmit="event.preventDefault();" class="space-y-4">
+                    <div>
+                      <label for="manual-code" class="block text-ink text-xs font-semibold uppercase tracking-wider mb-2">Kode Tiket</label>
+                      <input type="text" id="manual-code" class="input-field font-mono text-sm uppercase" placeholder="NWDS-XXXX-XXXX" maxlength="16">
+                    </div>
+                    <button type="button" id="btn-mock-checkin" class="btn-primary w-full text-sm py-3 justify-center">
+                      <iconify-icon icon="solar:check-circle-linear" width="18" height="18" aria-hidden="true" style="width:18px;height:18px;"></iconify-icon>
+                      Verifikasi &amp; Check-in
+                    </button>
+                  </form>
+                </div>
+
+                <p class="text-xs text-muted italic mt-4">
+                  Format kode: 4 blok alfanumerik (contoh: NWDS-7K9P-M2X4)
+                </p>
+              </div>
+            </div>
+
+            <!-- Visual States Preview (Simulation Controls) -->
             <div class="clay-card p-6 rounded-[20px]">
-              <h3 class="text-ink font-semibold text-base mb-4">Aktivitas Check-in Terkini</h3>
+              <h3 class="text-ink font-semibold text-base mb-3">Uji Pratinjau Status Respon (Visual State)</h3>
+              <p class="text-muted text-xs mb-4">Klik tombol di bawah untuk meninjau umpan balik visual setiap kemungkinan respon check-in:</p>
+              
+              <div class="flex flex-wrap gap-2 mb-6">
+                <button type="button" data-state-btn="success" class="px-3.5 py-2 rounded-xl text-xs font-medium bg-brand-mint text-success border border-brand-mint/60 hover:bg-brand-mint/80 transition-colors">
+                  1. Check-in Sukses
+                </button>
+                <button type="button" data-state-btn="duplicate" class="px-3.5 py-2 rounded-xl text-xs font-medium bg-warning/15 text-warning border border-warning/30 hover:bg-warning/20 transition-colors">
+                  2. Sudah Check-in (Duplikat)
+                </button>
+                <button type="button" data-state-btn="invalid" class="px-3.5 py-2 rounded-xl text-xs font-medium bg-danger/10 text-danger border border-danger/20 hover:bg-danger/20 transition-colors">
+                  3. Kode Tidak Valid
+                </button>
+                <button type="button" data-state-btn="permission" class="px-3.5 py-2 rounded-xl text-xs font-medium bg-canvas text-ink border border-line hover:bg-line/40 transition-colors">
+                  4. Izin Kamera Dibutuhkan
+                </button>
+                <button type="button" data-state-btn="network" class="px-3.5 py-2 rounded-xl text-xs font-medium bg-canvas text-muted border border-line hover:bg-line/40 transition-colors">
+                  5. Gangguan Jaringan
+                </button>
+              </div>
+
+              <!-- Visual State Display Box -->
+              <div id="checkin-state-display" class="p-4 rounded-2xl bg-brand-mint/30 border border-brand-mint flex items-start gap-3">
+                <iconify-icon id="state-icon" icon="solar:check-circle-bold" width="24" height="24" class="text-success flex-shrink-0 mt-0.5" aria-hidden="true" style="width:24px;height:24px;"></iconify-icon>
+                <div class="flex-1">
+                  <p id="state-title" class="text-ink font-bold text-sm">Check-in Berhasil (Contoh)</p>
+                  <p id="state-desc" class="text-muted text-xs mt-1">Ahmad Fauzi &middot; NWDS-7K9P-M2X4 &middot; Check-in pada 24 Okt 08:15 WIB</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Activity Log Card -->
+            <div class="clay-card p-6 rounded-[20px]">
+              <h3 class="text-ink font-semibold text-base mb-4">Aktivitas Check-in Meja Registrasi</h3>
               <div class="space-y-3">
-                <div class="flex items-center gap-3 p-3 bg-brand-mint/30 rounded-xl">
-                  <iconify-icon icon="solar:verified-check-bold" width="20" height="20" class="text-success flex-shrink-0" aria-hidden="true" style="width:20px;height:20px;"></iconify-icon>
-                  <div>
-                    <p class="text-ink font-medium text-sm">Dimas Prasetyo</p>
-                    <p class="text-muted text-xs">NWDS-0825 &middot; Check-in sukses di Meja Registrasi 1</p>
+                <div class="flex items-center gap-3 p-3.5 bg-brand-mint/30 rounded-xl">
+                  <iconify-icon icon="solar:check-circle-bold" width="20" height="20" class="text-success flex-shrink-0" aria-hidden="true" style="width:20px;height:20px;"></iconify-icon>
+                  <div class="flex-1">
+                    <p class="text-ink font-medium text-sm">Ahmad Fauzi</p>
+                    <p class="text-muted text-xs">NWDS-7K9P-M2X4 &middot; Check-in sukses via Scan Kamera</p>
                   </div>
+                  <span class="text-xs text-muted">08:15 WIB</span>
                 </div>
-                <div class="flex items-center gap-3 p-3 bg-warning/10 rounded-xl">
-                  <iconify-icon icon="solar:info-circle-linear" width="20" height="20" class="text-warning flex-shrink-0" aria-hidden="true" style="width:20px;height:20px;"></iconify-icon>
-                  <div>
-                    <p class="text-ink font-medium text-sm">Dewi Anggraini</p>
-                    <p class="text-muted text-xs">NWDS-0826 &middot; Perlu konfirmasi berkas pendaftaran</p>
+                <div class="flex items-center gap-3 p-3.5 bg-brand-mint/30 rounded-xl">
+                  <iconify-icon icon="solar:check-circle-bold" width="20" height="20" class="text-success flex-shrink-0" aria-hidden="true" style="width:20px;height:20px;"></iconify-icon>
+                  <div class="flex-1">
+                    <p class="text-ink font-medium text-sm">Budi Santoso</p>
+                    <p class="text-muted text-xs">NWDS-9X4M-P7K1 &middot; Check-in sukses via Input Manual</p>
                   </div>
+                  <span class="text-xs text-muted">08:35 WIB</span>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Settings View -->
-        <div data-view="settings" class="hidden">
-          <div class="max-w-2xl space-y-6">
-            <div class="clay-card p-6 rounded-[20px]">
-              <h2 class="text-ink font-semibold text-base mb-4">Informasi Konferensi</h2>
-              <dl class="space-y-4 text-sm">
-                <div><dt class="font-medium text-ink mb-1">Nama Acara</dt><dd class="text-muted">Nusantara Web &amp; Design Summit 2026</dd></div>
-                <div><dt class="font-medium text-ink mb-1">Tanggal &amp; Waktu</dt><dd class="text-muted">Sabtu, 24 Oktober 2026 (08.30 - 17.00 WIB)</dd></div>
-                <div><dt class="font-medium text-ink mb-1">Lokasi Venue</dt><dd class="text-muted">Sasana Budaya Ganesha (Sabuga ITB), Jl. Tamansari No. 73, Kota Bandung</dd></div>
-              </dl>
-            </div>
-
-            <div class="clay-card p-6 rounded-[20px]">
-              <h2 class="text-ink font-semibold text-base mb-4">Alokasi &amp; Batas Kuota</h2>
-              <dl class="space-y-4 text-sm">
-                <div><dt class="font-medium text-ink mb-1">Kapasitas Maksimal</dt><dd class="text-muted">300 Kursi Auditorium Utama</dd></div>
-                <div><dt class="font-medium text-ink mb-1">Status Pendaftaran</dt><dd class="text-success font-semibold">Pendaftaran Gelombang 1 Dibuka</dd></div>
-              </dl>
-            </div>
-
-            <div class="clay-card p-6 rounded-[20px]">
-              <h2 class="text-ink font-semibold text-base mb-4">Preferensi Notifikasi &amp; Sistem</h2>
-              <p class="text-muted text-sm leading-relaxed">Pengiriman notifikasi otomatis aktif via gateway WhatsApp dan email terhubung ke sekretariat panitia.</p>
             </div>
           </div>
         </div>
