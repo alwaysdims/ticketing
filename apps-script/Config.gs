@@ -4,9 +4,12 @@
  */
 function getConfig_() {
   var props = PropertiesService.getScriptProperties();
+  var spreadsheetId = props.getProperty('SPREADSHEET_ID');
+  var backendSecret = props.getProperty('BACKEND_SECRET');
+  if (!spreadsheetId || !backendSecret) throw new Error('Required Script Properties are missing');
   return {
-    spreadsheetId: props.getProperty('SPREADSHEET_ID'),
-    backendSecret: props.getProperty('BACKEND_SECRET'),
+    spreadsheetId: spreadsheetId,
+    backendSecret: backendSecret,
     maxParticipants: Number(props.getProperty('MAX_PARTICIPANTS') || '200'),
     timezone: props.getProperty('APP_TIMEZONE') || 'Asia/Jakarta',
     replayWindowSeconds: 60,
