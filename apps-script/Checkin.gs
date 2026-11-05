@@ -1,5 +1,5 @@
 function processCheckin_(data) {
-  if (!data || typeof data.ticketCode !== 'string' || !/^[A-HJ-NP-Z2-9]{4}-[A-HJ-NP-Z2-9]{4}$/.test(data.ticketCode.replace('NWDS-', ''))) {
+  if (!data || typeof data.ticketCode !== 'string' || !/^NWDS-[A-HJ-NP-Z2-9]{4}-[A-HJ-NP-Z2-9]{4}$/.test(data.ticketCode)) {
     throw appError_('INVALID', 404);
   }
   if (!['SCAN', 'MANUAL'].includes(String(data.method).toUpperCase())) throw appError_('INVALID_REQUEST', 400);
