@@ -1,38 +1,47 @@
-name: Build and test
+
+name: Frontend and API Checks
 
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
-  workflow_dispatch:
 
 permissions:
   contents: read
 
-concurrency:
-  group: ci-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
-  quality:
+  test:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: npm
 
-      - run: npm ci
-      - run: npm run build
-      - run: npm run verify:vercel
-      - run: node api/_lib/tests.js
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build frontend
+        run: npm run build
+
+      - name: Verify Vercel layout
+        run: npm run verify:vercel
+
+      - name: Run API unit tests
+        run: node api/_lib/tests.js
+
       - name: Check API syntax
         shell: bash
         run: |
           for file in api/_lib/*.js api/*.js api/admin/*.js api/admin/auth/*.js; do
             node --check "$file"
           done
-      - run: npm audit --omit=dev
+
+      - name: Audit production dependencies
+        run: npm audit --omit=dev
