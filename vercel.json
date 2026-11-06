@@ -4,17 +4,6 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "cleanUrls": true,
-  "functions": {
-    "api/*.js": {
-      "runtime": "nodejs20.x"
-    },
-    "api/admin/*.js": {
-      "runtime": "nodejs20.x"
-    },
-    "api/admin/auth/*.js": {
-      "runtime": "nodejs20.x"
-    }
-  },
   "headers": [
     {
       "source": "/api/(.*)",
